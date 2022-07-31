@@ -7,12 +7,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest]
-        build_type: [RelWithDebInfo, Debug]
-        enable_ui: [off]
-        include:
-          - os: ubuntu-latest
-            build_type: Debug
-            enable_ui: on
+        build_type: [Release]
+        enable_ui: [on]
     steps:
     - uses: actions/checkout@v2
       with:
@@ -54,7 +50,11 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
-        path: "bin/"
+        path: "bin/*"
+    - name: Upload a Build Artifact 2
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        path: "*"
     - name: Running C++ Tests
       shell: bash
       run: |
